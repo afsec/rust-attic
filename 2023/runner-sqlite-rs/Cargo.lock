@@ -289,9 +289,9 @@ dependencies = [
 
 [[package]]
 name = "sqlite-rs"
-version = "0.1.5"
+version = "0.1.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "5d284631a69c5393c5c4e1cdc633c73a3e0e2fbee223aae2b1ac309f16cb9bfc"
+checksum = "fb30937449c0f70c2f2fe63f50882e7dccdf76fb525a4b36fb06c2af47a1cb0f"
 
 [[package]]
 name = "strsim"
