@@ -1,0 +1,25 @@
+version: "3"
+services:
+  quicknet-server:
+    # restart: always
+    image: afsec/quicknet-server:latest
+    # TODO: define on code /data as database folder
+    #       to activate docker volume as follows in below
+    # volumes:
+    # - quicknet_data:/data
+    environment:
+      QN_LOG_LEVEL: INFO
+
+  quicknet-client:
+    depends_on:
+      - quicknet-server
+    # restart: always
+    image: afsec/quicknet-client:latest
+    environment:
+      QN_LOG_LEVEL: INFO
+    ports:
+      - "8000:8000"
+
+
+# volumes:
+# quicknet_data: {}

@@ -1,0 +1,7 @@
+[package]
+name = "zero-dep-tests-framework"
+version = "0.0.3"
+edition = "2021"
+
+
+[dependencies]

@@ -1,0 +1,10 @@
+[package]
+name = 'hello'
+version = '0.0.1'
+authors = ['Antonio Feitosa <antonio.cfc@gmail.com>']
+edition = '2018'
+
+[dependencies]
+
+[lib]
+crate-type = ['cdylib']

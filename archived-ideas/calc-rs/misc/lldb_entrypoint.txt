@@ -1,0 +1,6 @@
+lldb cargo run -- ./scripts/hello.prog
+
+(lldb) env RUST_LOG=calc-rs=trace
+(lldb) breakpoint set --name calc-rs::main
+(lldb) run
+

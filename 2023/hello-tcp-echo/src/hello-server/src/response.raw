@@ -1,0 +1,33 @@
+HTTP/1.0 200 OK
+Server: SimpleHTTP/0.6 Python/3.9.17
+Date: Fri, 25 Aug 2023 18:23:14 GMT
+Content-type: text/html; charset=utf-8
+Content-Length: 742
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Directory listing for /</title>
+</head>
+<body>
+<h1>Directory listing for /</h1>
+<hr>
+<ul>
+<li><a href=".cargo/">.cargo/</a></li>
+<li><a href=".gitignore">.gitignore</a></li>
+<li><a href=".vscode/">.vscode/</a></li>
+<li><a href="Cargo.lock">Cargo.lock</a></li>
+<li><a href="Cargo.toml">Cargo.toml</a></li>
+<li><a href="fuzzer/">fuzzer/</a></li>
+<li><a href="LICENSE">LICENSE</a></li>
+<li><a href="shell.nix">shell.nix</a></li>
+<li><a href="src/">src/</a></li>
+<li><a href="target/">target/</a></li>
+<li><a href="xtask/">xtask/</a></li>
+</ul>
+<hr>
+</body>
+</html>
+
+

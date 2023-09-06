@@ -1,0 +1,33 @@
+
+
+_default:
+    just -l
+
+# build program
+build:
+    @anchor build
+
+# check code formatting
+format:
+    @cargo fmt -- --check
+
+# check dependencies and code imports
+check:
+    @cargo check
+
+# show keys
+keys:
+    @anchor keys list
+
+# show IDL (Interface Description Language) for a client representation
+idl: build
+    @cat ./target/idl/escrow.json
+    @echo
+
+# run tests
+test:
+    @BROWSER="" anchor test
+   
+# clean temporary files
+clean:
+    @cargo clean

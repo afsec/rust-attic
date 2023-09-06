@@ -1,0 +1,12 @@
+[package]
+name = "runner-sqlite-rs"
+version = "0.1.0"
+edition = "2021"
+
+
+[dependencies]
+anyhow = "1.0.75"
+hexyl = "0.13.1"
+sqlite-rs = { version = "0.1.5", default-features = false, features = [
+    "alloc",
+] }

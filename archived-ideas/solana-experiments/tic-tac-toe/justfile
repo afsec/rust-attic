@@ -1,0 +1,17 @@
+
+
+_default:
+    just -l
+
+# build program
+build:
+    @anchor build
+
+# check code formatting
+format:
+    @cargo fmt -- --check
+
+# run tests
+tests:
+    @BROWSER="" anchor test
+   

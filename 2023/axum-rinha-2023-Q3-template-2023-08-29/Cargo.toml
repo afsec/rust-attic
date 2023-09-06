@@ -1,0 +1,16 @@
+[package]
+name = "hello-rinha"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+axum = "0.6.20"
+hyper = "0.14.27"
+serde = { version = "1.0.188", features = ["serde_derive"] }
+serde_json = "1.0.105"
+thiserror = "1.0.47"
+tokio = {version = "1.32.0", features = ["full"]}
+tracing = "0.1.37"
+tracing-subscriber = "0.3.17"
+uuid = { version = "1.4.1", features = ["serde", "v4"] }
+

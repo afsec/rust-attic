@@ -1,0 +1,9 @@
+[workspace]
+
+members = [
+    "src/menu-v1",
+    "src/menu-v2",
+    "src/menu-v3",
+    "src/menu-v4",
+    "src/menu-v5",
+]

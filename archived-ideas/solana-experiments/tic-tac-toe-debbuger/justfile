@@ -1,0 +1,20 @@
+PKG_NAME :="tic-tac-toe-debbuger"
+
+_default:
+    just -l
+
+# build main
+build:
+    @echo "--- BUILD ---"
+    @mkdir -p ./dist
+    @cargo build
+    @cp -v ./target/debug/{{PKG_NAME}} ./dist/
+
+# run main
+run:
+    @echo "--- RUN ---"
+    ./dist/{{PKG_NAME}}
+
+# clean main
+clean:
+   @cargo clean

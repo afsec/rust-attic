@@ -1,0 +1,7 @@
+{
+    "rust-analyzer.cargo.features": [
+        // We want to be able to rollout this application to production at all
+        // Thus we use _production_ as our default build feature set.
+    ],
+    "rust-analyzer.cargo.noDefaultFeatures": true,
+}

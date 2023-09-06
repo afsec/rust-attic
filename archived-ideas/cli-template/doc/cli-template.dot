@@ -1,0 +1,177 @@
+digraph cli_template {
+    # Main Graph
+    // definitions
+    labelloc = "t"
+    label = "CLI template"
+    
+    // Default Nodes definitions
+    node [shape = "rectangle"]
+    // Default Edges definitions
+    
+    // Nodes
+    start [shape = "circle"]
+    
+    // Edges
+    start -> launcher_main
+    launcher_main -> configurator_main [label="#1"]
+    configurator_main  -> launcher_main [label="#2\n(struct Configuration)"]
+    launcher_main -> dispatcher_main [label="#3\n(struct Configuration)"]
+    dispatcher_start_services -> services_main [label="(struct Configuration)"]
+    dispatcher_run_program -> program_main [label="(struct Configuration)"]
+    services_monitoring -> logger_main [label="if defined", style="dashed"]
+    services_monitoring -> telemetry_main [label="if defined", style="dashed"]
+    services_storage_local -> localstorage_main [label="if defined", style="dashed"]
+    services_storage_remote_sync -> localstorage_remotesync_main [label="if defined", style="dashed"]
+    # Subgraph X
+    subgraph cluster_0 {
+        // definitions
+        // labelloc = "t"
+        
+        label = "Launcher (bin)"
+        
+        // Nodes
+        launcher_main [label = "Launcher"]
+        launcher_parse_args [label = "Parse args"]
+        launcher_parse_envvars [label = "Parse envvars"]
+        
+        
+        // Edges
+        launcher_main-> launcher_parse_args
+        launcher_main-> launcher_parse_envvars
+
+    }  
+
+    # Subgraph "Configurator"
+    subgraph cluster_1 {
+        // definitions
+        // labelloc = "t"
+        
+        label = "Configurator"
+        
+        // Nodes
+        configurator_main [label = "Get configuration"]
+        configurator_default_config [label="Default config"]
+        configurator_parse_configfile [label = "Parse Configfile"]
+        configurator_apply_configfile [label = "Apply configuration \n (from configfile)"]
+        configurator_apply_config_from_launcher [label = "Apply configuration\n (from launcher)"]
+        
+        
+        // Edges
+        configurator_main -> configurator_default_config [label="#1"]
+        configurator_main -> configurator_parse_configfile [label="#2\n(if defined)", style="dashed"]
+        configurator_parse_configfile -> configurator_apply_configfile [style="dashed", label="if ok"]
+        configurator_main -> configurator_apply_config_from_launcher [label="#3"]
+
+    }
+
+
+    # Subgraph "Dispatcher"
+    subgraph cluster_2 {
+        // definitions
+        // labelloc = "t"
+        
+        label = "Dispatcher"
+        
+        // Nodes
+        dispatcher_main [label = "Dispatching"]
+        dispatcher_start_services [label = "Start services"]
+        dispatcher_run_program [label = "Run program"]
+        
+        
+        // Edges
+        dispatcher_main -> dispatcher_start_services [label="#1"];
+        dispatcher_main -> dispatcher_run_program [label="#2"];
+    }
+
+    # Subgraph "Services"
+    subgraph cluster_3 {
+        // definitions
+        // labelloc = "t"
+        
+        label = "Services"
+        
+        // Nodes
+        services_main [label = "Start"]
+        services_monitoring [label = "Monitoring"]
+        services_storage_local [label = "Local storage"]
+        services_storage_remote_sync [label = "Remote sync\n(Local storage)"]
+        // Edges
+        services_main -> services_monitoring [label="if defined", style="dashed"]
+        services_main -> services_storage_local [label="if defined", style="dashed"]
+        services_main -> services_storage_remote_sync [label="if defined", style="dashed"]
+        
+    }
+
+    # Subgraph "Logging"
+    subgraph cluster_4 {
+        // definitions
+        // labelloc = "t"
+        
+        label = "Logging\n(Local)"
+        
+        // Nodes
+        logger_main [label = "Start"]
+        logger_start_stdout_log [label = "stdout"]
+        logger_start_logger_log [label = "logger (syslog)"]
+        
+        // Edges
+        logger_main -> logger_start_stdout_log [label="if defined", style="dashed"]
+        logger_main -> logger_start_logger_log [label="if defined", style="dashed"]
+    }
+    # Subgraph "Telemetry"
+    subgraph cluster_5 {
+        // definitions
+        // labelloc = "t"
+        
+        label = "Telemetry [Metrics\nand Logging(if possible)]"
+        
+        // Nodes
+        telemetry_main [label = "Start"]
+        telemetry_start_prometheus_collector [label = "Prometheus\n(collector)"]
+        telemetry_start_opentelemetry_collector [label = "OpenTelemetry\n(collector)"]
+        
+        // Edges
+        telemetry_main -> telemetry_start_prometheus_collector [label="if defined", style="dashed"]
+        telemetry_main -> telemetry_start_opentelemetry_collector [label="if defined", style="dashed"]
+    }
+    # Subgraph "LocalStorage"
+    subgraph cluster_6 {
+        // definitions
+        // labelloc = "t"
+        
+        label = "LocalStorage"
+        
+        // Nodes
+        localstorage_main [label = "Start"]
+        localstorage_sqlite [label = "SQLite"]        
+        // Edges
+        localstorage_main -> localstorage_sqlite [label="if defined", style="dashed"]
+
+    }
+     # Subgraph "LocalStorage"
+    subgraph cluster_7 {
+        // definitions
+        // labelloc = "t"
+        
+        label = "RemoteSync(for LocalStorage)"
+        
+        // Nodes
+        localstorage_remotesync_main [label = "Start"]
+        localstorage_remotesync_postgresql [label = "PostgreSQL"]        
+        // Edges
+        localstorage_remotesync_main -> localstorage_remotesync_postgresql [label="if defined", style="dashed"]
+
+    }
+    # Subgraph "Program"
+    subgraph cluster_8 {
+        // definitions
+        // labelloc = "t"
+        color = "blue"
+        label = "Program"
+
+        // Nodes
+        program_main [label="program::run"]
+        // Edges
+ 
+    }
+}

@@ -1,0 +1,50 @@
+-- Add migration script here
+
+CREATE TABLE "authors" (
+	"id"	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
+	"name"	TEXT NOT NULL
+);
+
+CREATE TABLE "publishers" (
+	"id"	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
+	"name"	TEXT NOT NULL
+);
+
+CREATE TABLE "books" (
+	"id"	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
+	"title"	TEXT NOT NULL,
+	"price"	INTEGER NOT NULL,
+	"quantity"	INTEGER NOT NULL,
+	"author"	INTEGER NOT NULL,
+	"publisher"	INTEGER NOT NULL,
+	FOREIGN KEY("publisher") REFERENCES "publishers"("id"),
+	FOREIGN KEY("author") REFERENCES "authors"("id")
+);
+
+-- CREATE TABLE "users" (
+-- 	"id"	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
+-- 	"name"	INTEGER NOT NULL,
+-- );
+
+CREATE TABLE "orders" (
+	"id"	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
+	"name" TEXT NOT NULL
+	-- "user" INTEGER NOT NULL,
+	-- FOREIGN KEY("user") REFERENCES "users"("id")
+);
+
+CREATE TABLE "carts" (
+		"id"	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
+		"name" TEXT NOT NULL
+);
+
+CREATE TABLE "cart_items" (
+		"id"	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
+		"order_id" INTEGER NOT NULL,
+		"cart_id" INTEGER NOT NULL,
+		"book_id"  INTEGER NOT NULL,
+		FOREIGN KEY("order_id") REFERENCES "orders"("id"),
+		FOREIGN KEY("cart_id") REFERENCES "carts"("id"),
+		FOREIGN KEY("book_id") REFERENCES "books"("id")
+);
+

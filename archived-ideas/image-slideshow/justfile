@@ -1,0 +1,14 @@
+
+_default:
+    just -l
+
+
+# Generate images
+run:
+    cargo run
+
+# Clean temporary files and generated artifacts
+clean:
+    cargo clean
+    rm -f ./misc/*.png ./misc/video.mp4
+

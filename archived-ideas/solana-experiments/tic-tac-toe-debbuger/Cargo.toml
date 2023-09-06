@@ -1,0 +1,11 @@
+[package]
+name = "tic-tac-toe-debbuger"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+anchor-client = "0.24.2"
+borsh = "0.9.3"
+
+anyhow = "1.0.58"
+clap = { version = "3.2.7", features = ['derive'] }

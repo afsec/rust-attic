@@ -1,0 +1,11 @@
+[package]
+name = "quicknet_server"
+version = "0.1.1"
+authors = ["Antonio Feitosa <antonio.cfc@gmail.com>"]
+edition = "2018"
+
+[dependencies]
+
+md5 = "0.7.0"
+
+quicknet_core = { path = '../quicknet_core'}

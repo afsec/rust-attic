@@ -1,0 +1,13 @@
+file 'img01.png'
+duration 1
+file 'img02.png'
+duration 1
+file 'img01.png'
+duration 1
+file 'img02.png'
+duration 1
+file 'img01.png'
+duration 1
+file 'img02.png'
+
+

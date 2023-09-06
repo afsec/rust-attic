@@ -1,0 +1,7 @@
+[workspace]
+
+members = [
+'quicknet_core',
+'quicknet_client',
+'quicknet_server'
+]
