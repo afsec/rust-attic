@@ -11,6 +11,7 @@ use yew::Html;
 use yew::Properties;
 
 use crate::model::Model;
+use crate::model::UserId;
 
 /// The `Item` component is the child of the `Parent` component, and will send and receive updates
 /// to/from the grandparent using the context.
@@ -56,13 +57,13 @@ impl Component for Item {
     fn view(&self, ctx: &Context<Self>) -> Html {
         let id = ctx.props().id.clone();
         let name = ctx.props().name.clone();
-        let name_emit = ctx.props().name.clone();
+        let user_id_emit: UserId = ctx.props().id.clone().try_into().unwrap();
 
         // Here we emit the callback to the grandparent component, whenever the button is clicked.
         let onclick = self
             .state
-            .child_clicked
-            .reform(move |_| (name_emit.clone()));
+            .callbacks.deletion_dialog.dialog_open
+            .reform(move |_| (crate::layout::DialogForDeleteAction::Open(user_id_emit.clone())));
 
         html! {
             <div class="child-body">
@@ -75,7 +76,7 @@ impl Component for Item {
                 <div class="child-content">
                 <span>{ id }</span>
                     <span>{ name }</span>
-                    <button {onclick}>{"Click"}</button>
+                    <button onclick={onclick}>{"Delete"}</button>
                 </div>
             </div>
         }

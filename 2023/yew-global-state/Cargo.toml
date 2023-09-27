@@ -6,4 +6,5 @@ edition = "2021"
 license = "MIT OR Apache-2.0"
 
 [dependencies]
+gloo = "0.10.0"
 yew = { version = "0.20.0", features = ["csr"] }

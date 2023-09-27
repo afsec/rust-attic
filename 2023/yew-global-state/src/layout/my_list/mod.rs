@@ -41,7 +41,7 @@ impl Component for MyList {
             .expect("context to be set");
         let vec_vitem = state
             .data
-            .users
+            .users.0
             .iter()
             .map(|user| user.into())
             .collect::<Vec<VItem>>();
@@ -49,7 +49,7 @@ impl Component for MyList {
         {
             let vlist = Vlist(vec_vitem);
             let binding = Rc::make_mut(&mut state);
-            binding.vdom = Some(vlist);
+            binding.vlist = Some(vlist);
         }
 
         // let vlist: Vlist = state.data.users.iter().map(|user| user.into()).collect();
@@ -62,7 +62,7 @@ impl Component for MyList {
             MyListMsg::ContextChanged(mut state) => {
                 let vec_vitem = state
                     .data
-                    .users
+                    .users.0
                     .iter()
                     .map(|user| user.into())
                     .collect::<Vec<VItem>>();
@@ -70,7 +70,7 @@ impl Component for MyList {
                 {
                     let vlist = Vlist(vec_vitem);
                     let binding = Rc::make_mut(&mut state);
-                    binding.vdom = Some(vlist);
+                    binding.vlist = Some(vlist);
                 }
 
                 self.state = state;
@@ -86,7 +86,7 @@ impl Component for MyList {
 
         // Here we emit the callback to the grandparent component, whenever the button is clicked.
         // let onclick = self.state.child_clicked.reform(move |_| (my_name.clone()));
-        if let Some(vdom) = self.state.vdom.clone() {
+        if let Some(vdom) = self.state.vlist.clone() {
             let users = vdom.0;
 
             html! {
